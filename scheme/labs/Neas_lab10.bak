@@ -1,0 +1,38 @@
+#lang racket
+"1"
+(define (priority-que f)
+  (let ((heap '())
+        (q-size 0))
+    (define (create-heap h-min left right)
+      (list h-min left right))
+    (define (h-min H) (car H))
+    (define (left H) (cadr H))
+    (define (right H) (caddr H))
+    
+    (define (insert x H)
+      (if (it? x (h-min H))
+          (create-heap x (right H)
+                       (insert x (left H)))
+          (create-heap (h-min H)
+                       (right H)
+                       (insert x (left H)))))
+    
+    (define (combine-heaps h1 h2)
+      (cond ((null? h1) h2)
+            ((null? h2) h1)
+            ((it? (h-min h1) (h-min h2))
+             (create-heap (h-min h1)
+                          h2
+                          (combine-heaps (left h1) (right h1))))
+            (else
+             (create-heap (h-min h2)
+                          h1
+                          (combine-heaps (left h2) (right h2))))))
+    
+    (define (extract-min H)
+      (combine-heaps (left H) (right H)))
+    
+    (define (insert-this x)
+      (begin (set! q-size (+ 1 q-size))
+             (set! heap (insert x heap))))
+    

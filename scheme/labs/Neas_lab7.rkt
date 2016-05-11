@@ -1,0 +1,143 @@
+#lang racket
+"1"
+(define (make-phone-book name number left right)
+ (list (cons name number) left right))
+(make-phone-book "mike" 8603049326 '() '())
+
+"2"
+(define (get-name book)
+  (caar book))
+
+(define (get-number book)
+  (cdar book))
+
+(define (get-left book)
+  (cadr book))
+
+(define (get-right book)
+  (caddr book))
+
+"3"
+(define (insert book name number)
+   (cond ((null? book) (make-phone-book name number '() '()))
+         ((string=? (get-name book) name) (name number))
+         ((string<? name (get-name book)) (make-phone-book (get-name book)
+                                                      (get-number book)
+                                                      (insert (get-left book) name number)
+                                                      (get-right book)))
+         
+         ((string>? name (get-name book)) (make-phone-book (get-name book)
+                                                      (get-number book)
+                                                      (get-left book)
+                                                      (insert (get-right book) name number)))))
+(define pb1 (make-phone-book "mike" 860 '() '()))
+(insert pb1 "greg" 950)
+
+"4"
+(define (insert-all book L)
+  (if (null? L)
+      book
+  (insert-all (insert book (caar L) (cdar L)) (cdr L))))
+
+(insert-all '() (list(cons "Herbert" 5550001) 
+                          (cons "Mortimer" 5550002) 
+                          (cons "Oscar" 5550003)
+                          (cons "Stanley" 5550004)
+                          (cons "Walter" 5550005) 
+                          (cons "Gordon" 5550006)
+                          (cons "Larry" 5550007) 
+                          (cons "George" 5550008) 
+                          (cons "Henry" 5550009)
+                          (cons "Donald" 5550010) 
+                          (cons "Harry" 5550011) 
+                          (cons "Franklin" 5550012)
+                          (cons "Arthur" 5550014) 
+                          (cons "Vernon" 5550015) 
+                          (cons "Fran" 5550016)
+                          (cons "Betty" 5550017) 
+                          (cons "Mona" 5550018) 
+                          (cons "Agnes" 5550019)
+                          (cons "Gertrude" 5550020) 
+                          (cons "Esmerelda" 5550021)
+                          (cons "Ursula" 5550022) 
+                          (cons "Adele" 5550023) 
+                          (cons "Edwina" 5550024)
+                          (cons "Geraldine" 5550025) 
+                          (cons "Maggie" 5550026) 
+                          (cons "Pearl" 5550027)
+                          (cons "Winifred" 5550028) 
+                          (cons "Uma" 5550029) 
+                          (cons "Thelma" 5550030)
+                          (cons "Peter" 5550013)))
+
+"5"
+(define (phone-book-lookup book name)
+  (cond ((null? book) "number not in book")
+        ((string=? name (get-name book)) (get-number book))
+        ((string<? name (get-name book)) (phone-book-lookup (get-left book) name)) 
+        ((string>? name (get-name book)) (phone-book-lookup (get-right book) name))))
+
+(define big-book (insert-all '() (list(cons "Herbert" 5550001) 
+                          (cons "Mortimer" 5550002) 
+                          (cons "Oscar" 5550003)
+                          (cons "Stanley" 5550004)
+                          (cons "Walter" 5550005) 
+                          (cons "Gordon" 5550006)
+                          (cons "Larry" 5550007) 
+                          (cons "George" 5550008) 
+                          (cons "Henry" 5550009)
+                          (cons "Donald" 5550010) 
+                          (cons "Harry" 5550011) 
+                          (cons "Franklin" 5550012)
+                          (cons "Arthur" 5550014) 
+                          (cons "Vernon" 5550015) 
+                          (cons "Fran" 5550016)
+                          (cons "Betty" 5550017) 
+                          (cons "Mona" 5550018) 
+                          (cons "Agnes" 5550019)
+                          (cons "Gertrude" 5550020) 
+                          (cons "Esmerelda" 5550021)
+                          (cons "Ursula" 5550022) 
+                          (cons "Adele" 5550023) 
+                          (cons "Edwina" 5550024)
+                          (cons "Geraldine" 5550025) 
+                          (cons "Maggie" 5550026) 
+                          (cons "Pearl" 5550027)
+                          (cons "Winifred" 5550028) 
+                          (cons "Uma" 5550029) 
+                          (cons "Thelma" 5550030)
+                          (cons "Peter" 5550013))))
+
+(phone-book-lookup big-book "Arthur")
+(phone-book-lookup big-book "Mike")
+(phone-book-lookup big-book "Peter")
+
+"6"
+(define (first-number book)
+  (if (null? (get-left book))
+      (car book)
+      (first-number (get-left book))))
+(first-number big-book)
+
+(define (last-number book)
+  (if (null? (get-right book))
+      (car book)
+      (last-number (get-right book))))
+(last-number big-book)
+
+"7"
+(define (traverse book)
+  (if (null? book)
+      '()
+      (append (traverse (get-right book))
+              (list (get-name book))
+              (traverse (get-left book)))))
+
+(define small-book (insert-all '() (list(cons "Herbert" 5550001) 
+                                        (cons "Mortimer" 5550002) 
+                                        (cons "Oscar" 5550003)
+                                        (cons "Stanley" 5550004))))
+(traverse small-book)
+
+        
+                           

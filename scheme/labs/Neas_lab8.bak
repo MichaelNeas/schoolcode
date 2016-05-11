@@ -1,0 +1,51 @@
+#lang racket
+"1"
+(define (num-occurs c L)
+  (define (num-occurs-help c L count)
+  (cond ((null? L) count)
+        ((char=? c (car L)) (num-occurs-help c (cdr L) (+ 1 count))) ;remember char=?
+        (else (num-occurs-help c (cdr L) count)))) ;else makes it easier rather than defining a not statement
+    (num-occurs-help c L 0))
+(num-occurs #\e '(#\S #\c #\h #\e #\m #\e))
+
+"2"
+(define (value T) (car T))
+(define (right T) (caddr T))
+(define (left T) (cadr T))
+(define (make-tree value left right)
+  (list value left right))
+(define (insert x T)
+  (cond ((null? T) (make-tree x '() '()))
+        ((equal? x (value T)) T)
+        ((char<? x (value T)) (make-tree (value T)
+                                          (insert x (left T))
+                                          (right T)))
+        ((char>? x (value T)) (make-tree (value T)
+                                          (left T)
+                                          (insert x (right T))))))
+(define (insert-all lst T)
+  (if (null? lst)
+      T
+      (insert-all (cdr lst) (insert (car lst) T))))
+(define (extract-all T)
+  (define (extract-to T lst)
+    (if (null? T)
+        lst
+        (cons (value T)
+              (extract-to (left T)
+                          (extract-to (right T)
+                                      lst)))))
+  (extract-to T (list)))
+
+(define (extract-alphabet lst)
+  (if (null? lst)
+      '()
+      
+
+(define (freq-list LoC)
+  (define (freq-aux lst unique-elements)
+    )
+  (freq-aux LoC (extract-alphabet LoC)))
+  
+    
+      

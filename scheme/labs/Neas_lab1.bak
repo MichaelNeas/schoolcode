@@ -1,0 +1,25 @@
+#lang racket
+"1a"
+(define (dollars-to-euros $)
+(* $ 0.75))
+(dollars-to-euros 175)
+
+"1b"
+(define (euros-to-yen €)
+(* € 132.04))
+(euros-to-yen 240)
+
+"1c"
+(define (dollars-to-yen $)
+(euros-to-yen(dollars-to-euros $)))
+(dollars-to-yen 175)
+
+"2a"
+(define (N a b c d)
+  (- (* a d) (* b c)))
+(N -3 1 2 7)
+
+"2b"
+(define (invertible? a b c d)
+  (not (=0(*(det a b c d)))))
+

@@ -1,0 +1,58 @@
+#lang racket
+"Example"
+(define (pressure h)
+  (let ((p0 101325)
+        (L .0065)
+        (T0 288.15)
+        (g 9.80665)
+        (M .0289644)
+        (R 8.31447))
+    (let ((exponent (/ (* g M) (* R L)))
+          (base (- 1 (/ (* L h) T0))))
+      (* p0 (expt base exponent)))))
+
+"1a"
+(define (surface-area-of-sphere r)
+  (let ((pi 3.14159))
+     (* 4 pi (expt r 2))))
+(surface-area-of-sphere 2)
+
+"1b"
+(define (volume-of-ball r)
+  (* (/ (surface-area-of-sphere r) 3) r))
+(volume-of-ball 2)
+
+"1c"
+(define (energy-from-mass m)
+  (let ((c 299792458))
+        (* m (expt c 2))))
+(energy-from-mass 1) 
+
+"2"
+(define (quad-poly a b c)
+  (let ((sqrt (expt (- (expt b 2) (* 4 a c)) .5)))
+  (cond 
+    ((< sqrt 0) 'no-reals)
+    ((= sqrt 0) 1)
+    ((> sqrt 0) 2))))
+ 
+(quad-poly 1 2 1)
+(quad-poly 3 0 1)
+(quad-poly 2 3 1)
+
+
+
+"3a"
+(define (dot2 a1 a2 b1 b2)
+  (+ (* a1 b1) (* a2 b2)))
+(define (dot3 c1 c2 d1 d2)
+  (+ (* c1 d1) (* c2 d2)))
+
+"3b"
+
+"4"
+
+"5"
+
+
+
