@@ -7,10 +7,8 @@
 
 import java.util.Comparator;
 
-public class MergeSort<E> //generic merge sort for a doubly linked list
-{
-	public static <E> void mergeSort(DoublyLinkedList<E> listToSort, Comparator<E> comp)
-	{
+public class MergeSort<E> {//generic merge sort for a doubly linked list
+	public static <E> void mergeSort(DoublyLinkedList<E> listToSort, Comparator<E> comp){
 		int n = listToSort.size();
 		if(n < 2) return; //splits up values into individual linked lists
 		DoublyLinkedList<E> leftSide = new DoublyLinkedList<>();
@@ -25,10 +23,8 @@ public class MergeSort<E> //generic merge sort for a doubly linked list
 		merge(leftSide, rightSide, listToSort, comp); //once all lists have been split put them together WRT the comparator
 	}
 
-	public static <E> void merge(DoublyLinkedList<E> leftInput, DoublyLinkedList<E> rightInput, DoublyLinkedList<E> sortedList, Comparator<E> comp)
-	{	
-		while(!leftInput.isEmpty() && !rightInput.isEmpty()) //merge together the lists until one is empty
-		{
+	public static <E> void merge(DoublyLinkedList<E> leftInput, DoublyLinkedList<E> rightInput, DoublyLinkedList<E> sortedList, Comparator<E> comp){	
+		while(!leftInput.isEmpty() && !rightInput.isEmpty()){//merge together the lists until one is empty
 			if(comp.compare(leftInput.first(), rightInput.first()) < 0) //comparator function to control which gets inserted
 				sortedList.addLast(leftInput.removeFirst()); //small gets added last 
 			else

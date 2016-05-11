@@ -8,13 +8,11 @@
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class MazeSolve //main class
-{
+public class MazeSolve {//main class
 	private static MazeConstruct _constructMaze = new MazeConstruct();
 	private static ArrayList<Integer> _asteriskPath = new ArrayList<Integer>();
 
-	public static void main(String[] args)
-	{
+	public static void main(String[] args){
 		_constructMaze.getStartingInfo();
 		_constructMaze.initialGraph(_constructMaze.getSize());
 		System.out.println();
@@ -37,18 +35,16 @@ public class MazeSolve //main class
 		System.out.println("\n" + "\n" + "--[Michael Neas]--");
 	}
 
-	public static void assignAsterisk(ArrayList<Integer> aList, AdjacencyListGraph graph)
-	{
+	public static void assignAsterisk(ArrayList<Integer> aList, AdjacencyListGraph graph){
 		for(int q = 0;q < aList.size();q++)
-			for(int r = 0; r < graph.numVertices(); r++) //goes through the list of truly assigned connections that form the path
-			{
+			for(int r = 0; r < graph.numVertices(); r++) {//goes through the list of truly assigned connections that form the path
 				int indexMatch = aList.get(q);
 				if(graph.setOfVertices().get(r).getIndex() == indexMatch) //when it finds the match the boolean in vertex is set to true
 					graph.setOfVertices().get(r).setAsteriskTrue();
 			}
 	}
-	public static void solveMaze(AdjacencyListGraph graph)
-	{
+
+	public static void solveMaze(AdjacencyListGraph graph){
 		int startingVertex = _constructMaze.findStartVertex(graph);
 		DFS depthFirstSearch = new DFS(graph,startingVertex);
 		int finishingVertex = _constructMaze.findFinishVertex(graph);

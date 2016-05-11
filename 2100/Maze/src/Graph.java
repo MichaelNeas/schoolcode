@@ -7,8 +7,7 @@
 
 import java.util.ArrayList;
 
-public interface Graph //graph interface to know what i'm going to need in the graph
-{
+public interface Graph {//graph interface to know what i'm going to need in the graph
 	void insertVertex(Vertex O); //insert a vertex object
 	void insertEdge(Vertex u, Vertex v, int x, int count); //insert edge
 	ArrayList<Vertex> endVertices(Edge e);//get the end vertices
@@ -19,5 +18,4 @@ public interface Graph //graph interface to know what i'm going to need in the g
 	int numEdges(); //how many edges
 	ArrayList<Vertex> setOfVertices(); //the accessor of stored vertices
 	ArrayList<Edge> setOfEdges(); //accessor of stored edges
-	
 }

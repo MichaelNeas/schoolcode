@@ -5,9 +5,8 @@
  *Instructor: Chun-Hsi (Vincent) Huang
  */
 
-public interface AQueue<E>  //class is not neccessarily needed for this program but
-							//allows for multiple queues to be made in bigger programs
-{
+public interface AQueue<E>  {//class is not neccessarily needed for this program but
+	//allows for multiple queues to be made in bigger programs
 	int size();
 	boolean isEmpty();
 	void enqueue(E e);

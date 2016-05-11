@@ -1,59 +1,43 @@
-public class CircularLinkedList<E> 
-{
+public class CircularLinkedList<E> {
 	private Node<E> head;
 	public int length;
-	public CircularLinkedList()
-	{
+	public CircularLinkedList() {
         head = new Node<E>(null, head);
         length = 0;
 	}
 
-	public void add(E item)
-	{
+	public void add(E item) {
 		Node<E> tmp = head;
 		Node<E> node = new Node<E>(item, head);
-		if (isEmpty())
-		{
+		if (isEmpty()){
 			head.setNext(node);
-		}
-		else
-		{
-			while (head != tmp.getNext())
-			{
+		}else {
+			while (head != tmp.getNext()){
 				tmp = tmp.getNext();
 			}
 			tmp.setNext(node);
 		}
-
 		length++;
 	}
 
-	public E firstData()
-	{
+	public E firstData(){
 		return head.next.data;
 	}
 
-	public void removeFirst()
-	{
+	public void removeFirst(){
 		Node<E> tmp = head;
-		if (length < 1)
-		{
+		if (length < 1) {
 			System.out.println("Error: no item to delete");
-		}
-		else if (1 == length)
-		{
+		}else if (1 == length){
 			head.setNext(head);
 			length--;
-		}
-		else
-		{
+		}else {
 			head.setNext(tmp.getNext().getNext());
 			length--;
 		}
 	}
 
-	public boolean isEmpty()
-	{
+	public boolean isEmpty(){
 		return length==0;
 	}
 }
