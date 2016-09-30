@@ -1,1 +1,1 @@
-# UConn CSE '16
+# Projects From College
