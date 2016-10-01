@@ -1,0 +1,68 @@
+Length of test data: 1000000
+Length of training data: 25010
+5 Test Data entries: 
+1: [1,1,1,13,2,4,2,3,1,12,0]
+2: [3,12,3,2,3,11,4,5,2,5,1]
+3: [1,9,4,6,1,4,3,2,3,9,1]
+4: [1,4,3,13,2,13,2,1,3,6,1]
+5: [3,10,2,7,1,2,2,11,4,9,0]
+5 Training Data entries: 
+1: [1,10,1,11,1,13,1,12,1,1,9]
+2: [2,11,2,13,2,10,2,12,2,1,9]
+3: [3,12,3,11,3,13,3,10,3,1,9]
+4: [4,10,4,11,4,1,4,13,4,12,9]
+5: [4,1,4,13,4,12,4,11,4,10,9]
+Finished. Took :
+1350
+Correct! #1.0: 0 | 0
+Correct! #2.0: 1 | 1
+Correct! #3.0: 0 | 0
+Correct! #4.0: 0 | 0
+Correct! #5.0: 0 | 0
+Correct! #6.0: 0 | 0
+Correct! #7.0: 0 | 0
+Correct! #8.0: 0 | 0
+Correct! #9.0: 1 | 1
+Correct! #10.0: 1 | 1
+Correct! #11.0: 0 | 0
+Correct! #12.0: 1 | 1
+Correct! #13.0: 0 | 0
+Correct! #14.0: 1 | 1
+Correct! #15.0: 0 | 0
+Correct! #16.0: 0 | 0
+Correct! #17.0: 1 | 1
+Correct! #18.0: 0 | 0
+Correct! #19.0: 1 | 1
+Correct! #20.0: 1 | 1
+Correct! #21.0: 0 | 0
+Correct! #22.0: 1 | 1
+Correct! #23.0: 0 | 0
+Correct! #24.0: 1 | 1
+Correct! #25.0: 0 | 0
+Correct! #26.0: 0 | 0
+Correct! #27.0: 0 | 0
+Correct! #28.0: 1 | 1
+Correct! #29.0: 1 | 1
+Correct! #30.0: 1 | 1
+Correct! #31.0: 1 | 1
+Correct! #32.0: 1 | 1
+Correct! #33.0: 1 | 1
+Correct! #34.0: 0 | 0
+Correct! #35.0: 0 | 0
+Correct! #36.0: 1 | 1
+Correct! #37.0: 1 | 1
+Correct! #38.0: 1 | 1
+Correct! #39.0: 0 | 0
+Correct! #40.0: 0 | 0
+Correct! #41.0: 1 | 1
+Correct! #42.0: 0 | 0
+Correct! #43.0: 0 | 0
+Correct! #44.0: 1 | 1
+Correct! #45.0: 1 | 1
+Correct! #46.0: 0 | 0
+Correct! #47.0: 1 | 1
+Accuracy: 47.0
+Finished. Took :
+422196
+Accuracy: 47.0
+Accuracy = 43.1822

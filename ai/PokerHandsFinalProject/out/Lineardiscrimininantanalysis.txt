@@ -1,0 +1,23 @@
+Linear discrimininant analysis:
+Class 0:  25009 predicted, of which 12493 are true positives out of 12493 true total
+Class 1:  0 predicted, of which 0 are true positives out of 10599 true total
+Class 2:  0 predicted, of which 0 are true positives out of 1206 true total
+Class 3:  0 predicted, of which 0 are true positives out of 513 true total
+Class 4:  0 predicted, of which 0 are true positives out of 93 true total
+Class 5:  0 predicted, of which 0 are true positives out of 54 true total
+Class 6:  0 predicted, of which 0 are true positives out of 36 true total
+Class 7:  0 predicted, of which 0 are true positives out of 6 true total
+Class 8:  0 predicted, of which 0 are true positives out of 5 true total
+Class 9:  0 predicted, of which 0 are true positives out of 4 true total
+
+For quadratic discriminant analysis:
+Class 0:  18424 predicted, of which 10263 are true positives out of 12493 true total
+Class 1:  6566 predicted, of which 3448 are true positives out of 10599 true total
+Class 2:  0 predicted, of which 0 are true positives out of 1206 true total
+Class 3:  2 predicted, of which 1 are true positives out of 513 true total
+Class 4:  2 predicted, of which 0 are true positives out of 93 true total
+Class 5:  0 predicted, of which 0 are true positives out of 54 true total
+Class 6:  0 predicted, of which 0 are true positives out of 36 true total
+Class 7:  6 predicted, of which 6 are true positives out of 6 true total
+Class 8:  5 predicted, of which 5 are true positives out of 5 true total
+Class 9:  4 predicted, of which 4 are true positives out of 4 true total

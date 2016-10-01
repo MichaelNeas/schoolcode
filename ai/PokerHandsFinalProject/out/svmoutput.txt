@@ -1,0 +1,42 @@
+clf: Linear SVM with C value = 1
+training... 
+Training: 100.997273 s used.
+Predicting
+Testing: 134.705235 s used.
+accuracy =  0.55861
+----------------------------------
+clf: Radial Basis Function SVM with C value = 1
+training... 
+Training: 51.203489 s used.
+Predicting
+Testing: 105.049665 s used.
+accuracy =  0.92262
+----------------------------------
+clf: Linear SVM with C value = .001
+training... 
+Training: 33.210815 s used.
+Predicting
+Testing: 95.652295 s used.
+accuracy =  0.55674
+----------------------------------
+clf: Radial Basis Function SVM with C value = .001
+training... 
+Training: 56.517650 s used.
+Predicting
+Testing: 172.277752 s used.
+accuracy =  0.501
+----------------------------------
+clf: Linear SVM with C value = 10
+training... 
+Training: 474.629006 s used.
+Predicting
+Testing: 89.195347 s used.
+accuracy =  0.55627
+----------------------------------
+clf: Radial Basis Function SVM with C value = 10
+training... 
+Training: 52.460802 s used.
+Predicting
+Testing: 62.934579 s used.
+accuracy =  0.97407
+Done

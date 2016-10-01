@@ -1,0 +1,164 @@
+html{background-image: url(../img/Waffer-Background.png); margin:0px; padding:0px}
+
+body{margin:0px; padding:0px}
+
+header{ width: 100%; height:231px;}
+#our-banner img{width:400px; height:300px; margin:0 auto; display:block}
+
+header img{
+ margin:0px;
+ max-width:100%;
+}
+
+.buttons img{width: 190px; margin:0px; padding:0px; margin:0 auto; margin-top:55px;}
+.buttons ul{list-style-type: none; margin:0px; padding:0px}
+
+.right{float:right}
+.left{float:left}
+
+nav a{display:block; width:190px; height:115px; background-size: 100% 100%; margin-top:60px}
+
+.home{background-image: url(../img/Home_2.png);}
+   
+.menu{background-image: url(../img/Menu_2.png);}
+
+.about{background-image: url(../img/About_3.png);}
+
+.contact{background-image: url(../img/Contact_2.png);}
+
+.main-stuff{background-color: white; height: 1100px; width: 800px; margin:0 auto;
+border-top-right-radius:10px; border-top-left-radius:10px; 
+box-shadow:5px -5px 10px 4px #808080; }
+
+h1{color:white; text-align: center; font-size:32px; font-family:Arial Rounded MT Bold;}
+
+h2{color:white; text-align: center; font-size:25px}
+
+h3{color:white; text-align: center; font-size:20px font-family: Baskerville}
+
+p{color:white; text-align:center; font-size:16px; font-family:Baskerville}
+
+a:hover {color:yellow;}
+
+a {color:green}
+/*-----above is applied to all pages-------*/
+
+
+
+/*-----home start-------*/
+.left-info{clear:left; background-color: #000e2f; height: 900px; width: 360px; 
+margin-left:20px; float:left; margin-top:10px; border-radius:10px; padding:5px}
+
+.left-info img{display: block; margin-left: auto; margin-right: auto; margin-top:85px;
+border-style:ridge; border-color:white}
+
+.right-info{background-color: #000e2f; height: 900px; width: 360px; margin-right:20px;
+float:right; margin-top:10px; border-radius:10px; padding:5px }
+
+.right-info img{display: block; margin-left: auto; margin-right: auto; margin-top:100px;
+border-style:ridge; border-color:white}
+
+
+
+/*-----about start-------*/
+.about-main-stuff{background-color: white; height: 1350px; width: 800px; margin:0 auto;
+border-top-right-radius:10px; border-top-left-radius:10px; 
+box-shadow:5px -5px 10px 4px #808080; }
+
+.about-main-stuff p{font-size:14px; text-align:left}
+
+.about-left-info{clear:left; background-color: #000e2f; height: 1120px; width: 360px; 
+margin-left:20px; float:left; margin-top:10px; border-radius:10px; padding:5px}
+
+.about-left-info img{margin-left:60px; border-style:ridge; border-color:white;}
+
+.about-right-info{background-color: #000e2f; height: 600px; width: 360px; margin-right:20px;
+float:right; margin-top:10px; border-radius:10px; padding:5px }
+
+.about-right-info img{display: block; margin-left: auto; margin-right: auto; margin-top:5px;
+border-style:ridge; border-color:white; border-radius:5px}
+
+
+.recognitions{background-color: #000e2f; height: 500px; width: 360px; margin-right:20px;
+float:right; margin-top:10px; border-radius:10px; padding:5px; text-align:center}
+
+.recognitions img{margin-left:90px; border-style:ridge; border-color:black; margin-top:10px}
+
+
+
+/*-----contact start-------*/
+.contact-main-stuff{background-color: white; height: 1500px; width: 800px; margin:0 auto;
+border-top-right-radius:10px; border-top-left-radius:10px; 
+box-shadow:5px -5px 10px 4px #808080; }
+
+.contact-left-info{clear:left; background-color: #000e2f; height: 300px; width: 360px; 
+margin-left:20px; float:left; margin-top:10px; border-radius:10px; padding:5px}
+
+.contact-right-info{background-color: #000e2f; height: 300px; width: 360px; margin-right:20px;
+float:right; margin-top:10px; border-radius:10px; padding:5px;margin-bottom:10px }
+
+.contact-right-info img{margin-left:25px; border-style:ridge; border-radius:5px}
+
+.contact-right-info a{color:white}
+
+.contact-pic{background-color: #000e2f; height: 300px; width: 600px; margin-left:100px;
+ clear:both; border-radius:10px; padding:5px; color:white;
+text-align:center; font-size:30px;font-family:Arial Rounded MT Bold;}
+
+.contact-pic img{border-style:ridge; border-color:white; border-radius:5px}
+
+form{color:white; text-align:center;}
+
+.myform{background-color: #000e2f; height: 400px; width: 700px; margin-left:50px;
+clear:both; margin-top:10px; border-radius:10px; padding:5px;}
+
+
+
+/*-----menu start-------*/
+.menu-main-stuff{background-color: white; height: 1200px; width: 800px; margin:0 auto;
+border-top-right-radius:10px; border-top-left-radius:10px; 
+box-shadow:5px -5px 10px 4px #808080; }
+
+.menu-left-info{clear:left; background-color: #000e2f; height: 950px; width: 360px; 
+margin-left:20px; float:left; margin-top:10px; border-radius:10px; padding:5px}
+
+.menu-left-info img{margin-top:40px; margin-left:3px; border-style:outset ;border-radius:5px}
+
+.icecreampics{background-color: #000e2f; height: 250px; width: 370px; margin-right:20px;
+float:right; margin-top:10px; border-radius:10px; }
+
+.icecreampics img{margin-left:15px; border-radius:5px; border-style:groove}
+
+.spec{background-color: #000e2f; height: 400px; width: 360px; margin-right:20px;
+float:right; margin-top:10px; border-radius:10px; padding:5px}
+
+.menu-right-info{background-color: #000e2f; height: 270px; width: 360px; margin-right:20px;
+float:right; margin-top:10px; border-radius:10px; padding:5px }
+
+.menu-main-stuff li{color:white; text-align:center; font-size:16px; font-family:Baskerville}
+
+
+/*-----conditionals-------*/
+@media screen and (min-width: 489px){
+
+a:hover{width:190px; height:115px; background-size: 100% 100%}
+.home:hover {background-image: url(../img/Home_crack.PNG);}
+.menu:hover {background-image: url(../img/Menu_crack.png)}
+.about:hover {background-image: url(../img/About_crack.png)}
+.contact:hover {background-image: url(../img/Contact_Crack.png)}
+}
+
+@media screen and (max-width: 480px){
+body{}
+.buttons{width:100%;}
+.buttons ul{width:100%;}
+.buttons li{width:25%;}
+ a{width:100%; margin-top:70px}
+.main-stuff{width:100%; box-shadow:none; height:2300px}
+.left-info{float:none; margin:0 auto; width:100%} 
+.right-info{float:none; margin:0 auto; width:100%}
+h1{background-color:white; width: 100%; height 800px; color:#000e2f; padding-top: 10px; 
+padding-bottom:70px; margin-top:0px} 
+.left-info{padding:0px; height: 1000px}
+.right-info{margin-top:80px; padding:0px; height: 1000px}
+}
