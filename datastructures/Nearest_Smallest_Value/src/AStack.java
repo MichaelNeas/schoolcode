@@ -1,8 +1,5 @@
 /*Stack Implementation 
- *CSE2100 Project 2, Fall 2014
  *Michael Neas
- *9/21/2014
- *Instructor: Chun-Hsi (Vincent) Huang
  */
 
 public interface AStack<E>  {//interface which is technically not needed but is good practice

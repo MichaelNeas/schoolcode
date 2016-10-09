@@ -1,8 +1,5 @@
 /*Maze
- *CSE2100 Project 6, Fall 2014
  *Michael Neas
- *12/07/2014
- *Instructor: Chun-Hsi (Vincent) Huang
  */
 
 import java.util.Comparator;

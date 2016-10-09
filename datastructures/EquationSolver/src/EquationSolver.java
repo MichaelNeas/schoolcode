@@ -1,8 +1,5 @@
 /*Equation Solver
- *CSE2100 Project 4, Fall 2014
  *Michael Neas
- *10/26/2014
- *Instructor: Chun-Hsi (Vincent) Huang
  */
 
 import java.util.Scanner;

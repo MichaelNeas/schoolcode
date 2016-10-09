@@ -1,8 +1,5 @@
 /*Stock Queue Implementation 
- *CSE2100 Project 1, Fall 2014
  *Michael Neas
- *9/14/2014
- *Instructor: Chun-Hsi (Vincent) Huang
  */
 
 import java.util.Scanner;

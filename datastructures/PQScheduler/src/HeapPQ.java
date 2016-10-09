@@ -1,8 +1,5 @@
 /*PQScheduler
- *CSE2100 Project 5, Fall 2014
  *Michael Neas
- *11/12/2014
- *Instructor: Chun-Hsi (Vincent) Huang
  */
 
 import java.util.ArrayList;

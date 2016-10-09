@@ -1,8 +1,5 @@
 /*Puzzle Solve 
- *CSE2100 Project 3, Fall 2014
  *Michael Neas
- *10/09/2014
- *Instructor: Chun-Hsi (Vincent) Huang
  */
 
 public class ListNode<E>  {//node class, for singular linked list
