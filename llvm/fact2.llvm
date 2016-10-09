@@ -1,0 +1,25 @@
+; Michael Neas, CSE4100, Assignment1-Compute factorial of inpy 5 with recursive implementation
+; ModuleID = "fact2.llvm"
+declare i32 @printf(i8*,...)                           ; export the prototype of printf
+
+@msg = constant [9 x i8] c"got: %d\0A\00"
+
+define i32 @recursiveFact(i32 %input) {
+entry:
+	%t0 = icmp sle i32 %input, 1			;check to see if input is less than or equal to 1
+	br i1 %t0, label %output, label %recursiveStep 	;if it is then go to the output, otherwise go to recursive step
+recursiveStep:
+	%decrement = sub i32 %input, 1			;decrement for the recursive call
+	%rabbitHole = call i32 @recursiveFact(i32 %decrement) 	   ;climb into the rabit hole recursively
+	%temp = mul i32 %input, %rabbitHole	  		   ;store values temporarily
+	br label %output					   ;branch to output
+output:
+	%sol = phi i32 [1,%entry],[%temp,%recursiveStep]	;the solution comes from branches
+	ret i32 %sol
+}
+
+define i32 @main() {
+       %t1 = call i32 @recursiveFact(i32 5)			;call to function
+       %t2 = call i32(i8*,...)* @printf(i8* bitcast ([9 x i8]* @msg to i8*),i32 %t1)
+       ret i32 %t1
+}

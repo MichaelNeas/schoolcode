@@ -1,0 +1,111 @@
+; Michael Neas, Manipulate a simple data type represented by a C structure with two integer arrays of the same size.
+; ModuleID = "bSort.llvm"
+declare i32 @printf(i8*,...)                           ; export the prototype of printf
+
+ ;The 'malloc' instruction allocates memory from the system heap and returns a pointer to it.
+ ;4) call @malloc to allocate memory
+declare i8* @malloc(i32)         ; the standard malloc function but it's only 8 bits.... 4x8 = 32...I don't know Malloc access with i8, bitcast returned pointers from
+%AIPair = type { i32* , i32* }   ; a struct with two integers
+
+;Allocate two arrays of a chosen size (say 50) from the C heap and stores their pointer in the newly allocated structure.
+;It then calls the C function initPair passing the pointer to the structure and the size of the two arrays to initialize them.
+declare void @initPair(%AIPair* %p,i32 %size)
+declare void @printPair(%AIPair* %p,i32 %size)
+
+@msg = constant [9 x i8]  c"got: %d\0A\00"
+
+;create a main program in LLVM that allocates an LLVM pair structure
+;allocate malloc as a pair structure
+define i32 @main() {
+entry:
+	%arraySizes = add i32 10, 0		;set array sizes, check for various sizes
+	;arraySizes = add i32 50, 0
+	;arraySizes = add i32 100, 0
+	%pairPointer = alloca %AIPair		;1) allocate structure on stack
+	;%pairPointer2 = bitcast i8* @malloc() to i32*
+	;%pairPointer3 = bitcast [50 x i8]* @malloc() to i32*
+	;%pairPointer4 = bitcast [50 x i8]* @malloc() to %AIPair*, I don't know how to bitcast this correctly and access the heap storage =(
+	%initRandomPart = alloca i32, i32 %arraySizes	;random array
+	%initOrderedPart = alloca i32, i32 %arraySizes	;nonrandom initial array
+
+	;Also recall the structure and typedef seen in misc.c:
+	;‘undef‘ can be used anywhere a constant is expected
+	%sertMyRandomHalf = insertvalue %AIPair undef, i32* %initRandomPart, 0   ;The ‘insertvalue‘ instruction inserts a value into a member field in an aggregate value.
+	%sertOrderPair =  insertvalue %AIPair %sertMyRandomHalf, i32* %initOrderedPart, 1 ; 1st index of the pair cause 0th is randoms
+	store %AIPair %sertOrderPair, %AIPair* %pairPointer 				;write the pair!
+
+;So by passing the allocated structure to the C file,
+;misc.c knows the memory of the allocated structure
+;and therefore has two structure variables (_a & _b) which again matches up to bSort.llvm %AIPair structure.
+
+	;General main function to model from
+	;%t0 = bitcast [15 x i32]* @data3 to i32*
+    ;%t1 = call i32 @binSearch(i32* %t0,i32 15,i32 27)
+    ;%t2 = call i32(i8*,...)* @printf(i8* bitcast ([9 x i8]* @msg to i8*),i32 %t1)
+    ;ret i32 %t1
+
+    ;Store and alloca behaviour
+	;%ptr = alloca i32                  ; yields i32*:ptr
+    ;store i32 3, i32* %ptr             ; yields void
+    ;%val = load i32* %ptr 		       ; yields i32:val = i32 3
+    ;ret i32 %val
+
+    call void @initPair(%AIPair* %pairPointer, i32 %arraySizes)					;7) call initPair & printPair
+    call void @printPair(%AIPair* %pairPointer, i32 %arraySizes)
+    call void @bubbleSort(%AIPair* %pairPointer, i32 %arraySizes)				;8) call bubbleSort & printPair
+    call void @printPair(%AIPair* %pairPointer, i32 %arraySizes)
+    ret i32 0		;need to have a return statement of something
+}
+
+;The idea is to permute the pairs so that the keys are listed in increasing order
+define void @bubbleSort(%AIPair* %tab,i32 %n){
+entry:						;for(int x=0; x<n; x++)
+	%x = add i32 0, 0		;initialize the counter to 0
+	%loop = icmp sge i32 %x, %n
+	br i1 %loop, label %output, label %sortMe		;either loop through the sort because it's not at the end or go to output
+
+;sorting driver
+sortMe:
+	%maintainedVal = phi i32 [%x, %entry], [%grabRight, %bubble], [%grabRight, %popSwitch]	;value assignments to keep track of currents
+	%finalElementInArray = sub i32 %n, 1													;last element to bubble
+	%noMore = icmp eq i32 %maintainedVal, %finalElementInArray								;no more to switch
+	br i1 %noMore, label %valsLeft, label %bubble											;if the maintained value is at the end get ready to get out
+
+bubble: ;create AIPair pointers (using getelementptr) for each structure index (recall: %AIPair = type(i32*,i32*)
+	%getPair = getelementptr %AIPair* %tab, i32 0			;get the pointer to the pair
+	%valPair = load %AIPair* %getPair						;load em store variables from 5)
+	%randomValPointer = extractvalue %AIPair %valPair, 0 	;get the random value pointer list
+	%numeratePointer = extractvalue %AIPair %valPair, 1		;get the enumerated value pointer list
+
+	%grabRight = add i32 %maintainedVal, 1												;get the next value next to the current working value
+	%workingValuePointer = getelementptr i32* %randomValPointer, i32 %maintainedVal		;get the single value from the list
+	%rightOfworkingValuePointer	= getelementptr i32* %randomValPointer, i32 %grabRight	;get the next single value from the list
+	%workingLoad = load i32* %workingValuePointer	;load them
+	%rightOfWorking = load i32* %rightOfworkingValuePointer
+
+	%numIntegerPointer = getelementptr i32* %numeratePointer, i32 %maintainedVal	;now grab the enumerated value pointer
+	%numIntegerNextPointer = getelementptr i32* %numeratePointer, i32 %grabRight	;and the one to the right of it
+	%numLoad = load i32* %numIntegerPointer  ;load them
+	%rightNumLoad = load i32* %numIntegerNextPointer
+
+	%neighboringComparison = icmp sge i32 %workingLoad, %rightOfWorking       ;check if the value to the right is greater or less than
+	br i1 %neighboringComparison, label %popSwitch, label %sortMe             ;if it is then switch, otherwise continue sorting!
+
+;if need to switch for the sort its handled here
+popSwitch:
+	store i32 %workingLoad, i32* %rightOfworkingValuePointer	;switch handling for when the values are less to the right
+	store i32 %rightOfWorking, i32* %workingValuePointer		;store right value in the left
+	store i32 %numLoad, i32* %numIntegerNextPointer				;swap enumerated
+	store i32 %rightNumLoad, i32* %numIntegerPointer 			;store right number in left
+	br label %sortMe
+
+;are there values left and how many
+valsLeft:
+	%finalElementAgain = sub i32 %n, 1								;instantiate again
+	call void @bubbleSort(%AIPair* %tab, i32 %finalElementAgain)	;recursive call to the current state of the array for the final pointerValue
+	br label %output												;break out cause it's done
+
+;return a function output from the c file
+output:
+	ret void	;returning the print statement from .c
+}

@@ -1,0 +1,29 @@
+; Michael Neas, CSE4100, Assignment1-Compute factorial for the numerical input 5 iteratively, single line output
+; ModuleID = "fact1.llvm"
+declare i32 @printf(i8*,...)                           ; export the prototype of printf
+
+@msg = constant [9 x i8] c"got: %d\0A\00"
+
+define i32 @iterativeFact(i32 %input) {
+entry:
+	%t0 = icmp sle i32 %input,1 			;1 bit true or false return from check, if less than 1
+	br i1 %t0, label %output, label %decrement		;branch to either true or false condition
+check:
+	%runningTotal = mul i32 %t2,%total		;keep track of the running total
+	%t1 = icmp sle i32 %t2,1			       ;t1 stores a fresh
+	br i1 %t1, label %output, label %decrement
+decrement:
+	%incomingCount = phi i32 [%input, %entry],[%t2, %check]	;incoming count is based on whether branch from entry or check point
+	%total = phi i32 [%input, %entry],[%runningTotal,%check]	  ;the total is from the same
+	%t2 = sub i32 %incomingCount,1 					  ;t2 is the subtraction of the count variable
+	br label %check							  ;branch to the check to see if it is done or not
+output:
+	%t3 = phi i32 [%runningTotal,%check],[1,%entry]
+	ret i32 %t3
+}
+
+define i32 @main() {
+       %t1 = call i32 @iterativeFact(i32 5)			;call it
+       %t2 = call i32(i8*,...)* @printf(i8* bitcast ([9 x i8]* @msg to i8*),i32 %t1)
+       ret i32 %t1
+}

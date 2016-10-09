@@ -1,0 +1,30 @@
+; Michael Neas, CSE4100, Assignment1- Compute fibonacci function for the input 6 and prints
+; ModuleID = "fib.llvm"
+declare i32 @printf(i8*,...)                           ; export the prototype of printf
+
+@msg = constant [9 x i8] c"got: %d\0A\00"
+
+define i32 @fibCalculation(i32 %input) {
+entry:
+	%isZero = icmp eq i32 %input,0				;check if the input is 0
+	br i1 %isZero, label %output, label %checkIfEqualsOne	;branch to a secondary check or the output
+checkIfEqualsOne:
+	%isOne = icmp eq i32 %input,1				;check if the input is 1
+	br i1 %isOne, label %output, label %recurse		;branch to a recursive step or the output if satisfied
+recurse:
+	%dec1 = sub i32 %input,1				;decrement for the recursive calls
+	%dec2 = sub i32 %input,2
+	%call1 = call i32 @fibCalculation(i32 %dec1)
+	%call2 = call i32 @fibCalculation(i32 %dec2)
+	%sum = add i32 %call1,%call2				;add the two calls together
+	br label %output					;branch to the output once summed
+output:
+	%solution = phi i32 [0,%entry],[1,%checkIfEqualsOne],[%sum,%recurse]	
+	ret i32 %solution					;solution is based on the 
+}
+
+define i32 @main() {
+       %t1 = call i32 @fibCalculation(i32 6)			;make the call
+       %t2 = call i32(i8*,...)* @printf(i8* bitcast ([9 x i8]* @msg to i8*),i32 %t1)
+       ret i32 %t1
+}

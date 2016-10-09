@@ -1,0 +1,25 @@
+; ModuleID = "max.llvm", this is a comment cause it starts with semi-colon
+declare i32 @printf(i8*,...)         	       ; import the prototype of printf, declares name of external symbol
+
+@msg = constant [9 x i8]  c"got: %d\0A\00"     ;declares global constant msg, array of 9, 8-bit wide pieces
+
+define i32 @max(i32 %a,i32 %b) {               ;two 32bit wide integers with names %a,%b
+entry: 	   	    	       		       
+	%t0 = icmp sle i32 %a,%b	       ;comparison of 2 ints, signed less than or equal to, resulting 1 bit stored t0
+	br i1 %t0, label %then, label %else    ;branches to a block based on the value of the 1 bit stored
+then:
+	%t1 = and i32 %b,%b			;copies %b into a fresh temporary %t1
+	br label %exit				;jumps to exit block
+else:
+	%t2 = and i32 %a,%a			;else store it in t2 then exit
+	br label %exit
+exit: 	
+	%t3 = phi i32 [%t1,%then],[%t2,%else]	;phi node, one can't write a temporary more than once, this lets output flow to fresh temporary variable t3
+	ret i32 %t3
+}
+
+define i32 @main() {
+       %t1 = call i32 @max(i32 123,i32 25)	;calls the method
+       %t2 = call i32(i8*,...)* @printf(i8* bitcast ([9 x i8]* @msg to i8*),i32 %t1)
+       ret i32 %t1
+}

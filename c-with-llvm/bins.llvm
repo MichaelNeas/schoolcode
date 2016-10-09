@@ -1,0 +1,57 @@
+; Michael Neas, Binary search routine operating on a sorted array of n 32-bit wide integers.
+; ModuleID = "binSearch.llvm"
+declare i32 @printf(i8*,...)                           ; export the prototype of printf
+
+@msg = constant [9 x i8]  c"got: %d\0A\00"
+@data = constant [10 x i32] [i32 10,i32 11,i32 12,i32 13,i32 14,i32 15,i32 16,i32 17,i32 18,i32 19]
+@data2 = constant [12 x i32] [i32 1,i32 4,i32 9,i32 11,i32 16,i32 27,i32 29,i32 33,i32 35,i32 39, i32 42, i32 53]
+@data3 = constant [15 x i32] [i32 1,i32 4,i32 9,i32 11,i32 16,i32 27,i32 29,i32 33,i32 35,i32 39, i32 42, i32 53, i32 80, i32 92, i32 209]
+
+
+define i32 @binSearch(i32* %tab,i32 %n,i32 %k) {
+entry:
+	%midIndex = sdiv i32 %n, 2           								;initial tab is mid point rounded towards 0 so 10/2 = 5, and 9/2 = 4
+	%pointerValue = getelementptr i32* %tab, i32 %midIndex			  	;shift the pointer based on tab
+	%value = load i32* %pointerValue									;load info from pointer move
+	%moreToCheck = icmp slt i32 %midIndex, 0 							;if the location is below 0 then it's not in the array return -1
+	br i1 %moreToCheck, label %output, label %checkEquality				;if it is then go to output else check if equal
+
+checkEquality:
+	%isEqual = icmp eq i32 %value, %k         							;check if the info at pointer is equal to key
+	br i1 %isEqual, label %output, label %shrinkTab   					;if it is then go to the output, otherwise go to recursive step
+
+shrinkTab:
+	%direction = icmp slt i32 %value, %k 								;is the value less than k?
+	br i1 %direction, label %rightCheck, label %leftCheck 						;if so then move left
+
+leftCheck:
+	%doubleCheck = icmp slt i32 %midIndex, 1							;check statement required to break out of recursion
+	br i1 %doubleCheck, label %output, label %leftRec
+
+leftRec:
+	%resetPointer = getelementptr i32* %tab, i32 0						;move pointer back to the beginning of the array
+	%leftRecursion = call i32 @binSearch(i32* %resetPointer, i32 %midIndex, i32 %k)
+	br label %output
+
+rightCheck:																;check statement required to break out of recursion
+	%newSize = sub i32 %n, %midIndex
+	%tooSmall = icmp slt i32 %newSize, 1
+	br i1 %tooSmall, label %output, label %rightRec
+
+rightRec:
+	%newPointerValue = getelementptr i32* %tab, i32 %newSize			;the new pointer location is
+	%rightRecursion = call i32 @binSearch(i32* %newPointerValue, i32 %newSize, i32 %k)
+	br label %output
+
+output:
+	%sol = phi i32 [-1,%entry],[-1, %rightCheck],[-1, %leftCheck],[%value,%checkEquality],[%rightRecursion, %rightRec], [%leftRecursion, %leftRec] ;the solution comes from branches
+	ret i32 %sol
+}
+
+; The main program is responsible for setting up a sorted array of n integers and testing your llvm routine.
+define i32 @main() {
+       %t0 = bitcast [15 x i32]* @data3 to i32*
+       %t1 = call i32 @binSearch(i32* %t0,i32 15,i32 27)
+       %t2 = call i32(i8*,...)* @printf(i8* bitcast ([9 x i8]* @msg to i8*),i32 %t1)
+       ret i32 %t1
+}
