@@ -1,4 +1,6 @@
 # Random Projects From College
+##Not all classes on my transcript, but the ones required to graduate.
+
 | Category                    | Course Number | Course Name                 | CR | Completed | 
 |-----------------------------|---------------|-----------------------------|----|-----------| 
 | Math and Science            |               |                             |    |           | 
